@@ -6,9 +6,27 @@
 	<!--引入框架-->
 	<script src="angular.min.js"></script>
 </head>
-<body ng-app>
-	<input type="text" ng-model='text'>
-	<h3>{{text}}</h3>
-	
-</body>
+<body ng-app='ToDoMVC' ng-controller='ToDocontroller'>
+<!--Amgular输入框输入内容点击回车显示到相应位置-->
+
+	<!--<input type="text" ng-model='text'>
+	<h3>{{text}}</h3>-->
+	<form action="" ng-submit='add()'>
+		<input type="text" autofocus placeholder="what needs to dones? " ng-model='text'>
+	</form>
+	<ul>
+		<li ng-repeat='todo in todos'>
+			<label>{{todo}}</label>
+		</li>
+	</ul>
+	<script>
+		var con=angular.module('ToDoMVC',[])
+		con.controller('ToDocontroller',['$scope',function($scope){
+			$scope.add=function(){
+				$scope.todos=[];
+				$scope.todos.push($scope.text);
+				console.log($scope.todos);
+			}
+		}])
+	</script>
 </html>
